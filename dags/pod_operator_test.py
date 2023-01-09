@@ -25,13 +25,13 @@ task_default_args = {
 }
 
 
-#dag = DAG(
-#    dag_id=dag_id,
-#    description='kubernetes pod operator',
-#    default_args=task_default_args,
-#    schedule_interval='5 16 * * *',
-#    max_active_runs=1
-#)
+dag = DAG(
+    dag_id=dag_id,
+    description='kubernetes pod operator',
+    default_args=task_default_args,
+    #schedule_interval='5 16 * * *',
+    max_active_runs=1
+)
 
 #args = {
 #    'owner': 'airflow'
