@@ -12,12 +12,12 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
 dag_id = 'kubernetes-dag'
 
 task_default_args = {
-    'owner': 'bomwo',
+    'owner': 'admin',
     'retries': 3,
     'retry_delay': timedelta(minutes=5),
     'start_date': datetime(2020, 11, 21),
     'depends_on_past': False,
-    'email': ['bomwo25@mgmail.com'],
+    'email': ['shclub@mgmail.com'],
     'email_on_retry': False,
     'email_on_failure': True,
     'execution_timeout': timedelta(hours=1)
@@ -31,12 +31,12 @@ dag = DAG(
     max_active_runs=1
 )
 
-env = Secret(
-    'env',
-    'TEST',
-    'test_env',
-    'TEST',
-)
+#env = Secret(
+#    'env',
+#    'TEST',
+#    'test_env',
+#    'TEST',
+#)
 
 pod_resources = Resources()
 pod_resources.request_cpu = '1000m'
@@ -45,9 +45,9 @@ pod_resources.limit_cpu = '2000m'
 pod_resources.limit_memory = '4096Mi'
 
 
-configmaps = [
-    k8s.V1EnvFromSource(config_map_ref=k8s.V1ConfigMapEnvSource(name='secret')),
-]
+#configmaps = [
+#    k8s.V1EnvFromSource(config_map_ref=k8s.V1ConfigMapEnvSource(name='secret')),
+#]
 
 start = DummyOperator(task_id="start", dag=dag)
 
