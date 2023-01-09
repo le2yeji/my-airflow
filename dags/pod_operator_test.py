@@ -70,8 +70,8 @@ start = DummyOperator(task_id="start", dag=dag)
 
 
 run = KubernetesPodOperator(
-    task_id="kubernetes-pod-operator",
-    namespace='edu30',
+    task_id="kubernetespodoperator",
+    namespace='edu31',
     image='busybox',
     cmds=["sleep", "360d"],
     #secrets=[
