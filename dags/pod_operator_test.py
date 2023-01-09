@@ -16,7 +16,6 @@ task_default_args = {
     #'retries': 3,
     #'retry_delay': timedelta(minutes=5),
     'start_date': datetime(2023, 1, 1),
-    'schedule_interval': None,
     'depends_on_past': False,
     'email': ['shclub@gmail.com'],
     'email_on_retry': False,
@@ -30,6 +29,7 @@ dag = DAG(
     description='kubernetes pod operator',
     default_args=task_default_args,
     #schedule_interval='5 16 * * *',
+    schedule_interval= None,
     max_active_runs=1
 )
 
