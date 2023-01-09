@@ -55,7 +55,7 @@ run = KubernetesPodOperator(
     task_id="kubernetespodoperator",
     namespace='edu31',
     image='nginx',
-    command=["bash", "sleep 360d"],
+    cmds=["bash", "sleep 360d"],
     #secrets=[
     #    env
     #],
