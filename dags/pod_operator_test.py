@@ -55,8 +55,8 @@ start = DummyOperator(task_id="start", dag=dag)
 run = KubernetesPodOperator(
     task_id="kubernetespodoperator",
     namespace='edu31',
-    image='nginx',
-    cmds=["bash", "sleep 360d"],
+    image='busybox',
+    cmds=["sleep", "360d"],
     #secrets=[
     #    env
     #],
