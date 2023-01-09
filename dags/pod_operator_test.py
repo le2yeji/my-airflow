@@ -9,15 +9,17 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
     KubernetesPodOperator,
 )
 
-#dag_id = 'kubernetes-dag'
+dag_id = 'kubernetes-dag'
 
 task_default_args = {
     'owner': 'airflow',
-    'retries': 3,
-    'retry_delay': timedelta(minutes=5),
-    'start_date': datetime(2020, 11, 21),
+    #'retries': 3,
+    #'retry_delay': timedelta(minutes=5),
+    #'start_date': datetime(2020, 11, 21),
+    'schedule_interval': None,
+    'start_date': days_ago(2)
     'depends_on_past': False,
-    'email': ['shclub@mgmail.com'],
+    'email': ['shclub@gmail.com'],
     'email_on_retry': False,
     'email_on_failure': True,
     'execution_timeout': timedelta(hours=1)
@@ -32,16 +34,16 @@ task_default_args = {
 #    max_active_runs=1
 #)
 
-args = {
-    'owner': 'airflow'
-}
+#args = {
+#    'owner': 'airflow'
+#}
 
-with DAG(
-    dag_id='kubernetes-simple-dag',
-    default_args=args,
-    schedule_interval=None,
-    start_date=days_ago(2)
-) as dag:
+#with DAG(
+#    dag_id='kubernetes-simple-dag',
+#    default_args=args,
+#    schedule_interval=None,
+#    start_date=days_ago(2)
+#) as dag:
     
 #env = Secret(
 #    'env',
@@ -64,7 +66,7 @@ with DAG(
 start = DummyOperator(task_id="start", dag=dag)
 
 run = KubernetesPodOperator(
-    task_id="kubernetespodoperator",
+    task_id="kubernetes_pod_operator",
     namespace='edu31',
     image='nginx',
     #cmds=["sleep", "360d"],
