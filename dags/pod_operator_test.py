@@ -71,14 +71,14 @@ start = DummyOperator(task_id="start", dag=dag)
 
 run = KubernetesPodOperator(
     task_id="kubernetes_pod_operator",
-    namespace='edu31',
+    namespace='edu30',
     image='busybox',
     cmds=["sleep", "360d"],
     #secrets=[
     #    env
     #],
     #image_pull_secrets=[k8s.V1LocalObjectReference('image_credential')],
-    name="job2",
+    name="job3",
     is_delete_operator_pod=True,
     get_logs=True,
     #resources=pod_resources,
