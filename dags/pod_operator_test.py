@@ -55,11 +55,12 @@ run = KubernetesPodOperator(
     task_id="kubernetespodoperator",
     namespace='edu31',
     image='nginx',
+    command=["bash", "sleep 360d"],
     #secrets=[
     #    env
     #],
     #image_pull_secrets=[k8s.V1LocalObjectReference('image_credential')],
-    name="job",
+    name="job2",
     is_delete_operator_pod=True,
     get_logs=True,
     #resources=pod_resources,
