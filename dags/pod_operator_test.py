@@ -59,7 +59,7 @@ dag = DAG(
 
 # Use k8s_client.V1ResourceRequirements to define resource limits
 k8s_resource_requirements = k8s.V1ResourceRequirements(
-    requests={"memory": "100Mi"}, limits={"memory": "512Mi"}
+    requests={"cpu": "1000m","memory": "100Mi"}, limits={"cpu": "2000m","memory": "512Mi"}
 )
         
 #configmaps = [
