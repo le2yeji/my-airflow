@@ -1,0 +1,87 @@
+helm install airflow bitnami/airflow --version=14.0.4 -f values.yaml -n airflow-system  --insecure-skip-tls-verify
+
+
+helm install airflow .  \
+
+    --set existingConfigmap=airflow-custom-config \
+
+    --set auth.fernetKey=SjFBazVsRkNXSW1jWDFFOVkxOEdSb0Z3cVQ0NURSTDc= \
+
+    --set auth.secretKey=SXBRZHJ5emh6bEhMNFdsaXZlYTVOdm5NYmUwclpKR24= \
+
+    --set global..imageRegistry=nexus.dspace.kt.co.kr \
+
+    --set global..imagePullSecrets[0]=dspace-nexus \
+
+    --set auth.username=admin \
+
+    --set auth.password=new1234! \
+
+    --set web.existingConfigmap=web-cfg \
+
+    --set web.containerSecurityContext.enabled=true \
+
+    --set web.containerSecurityContext.runAsUser=0 \
+
+   --set web.containerSecurityContext.runAsNonRoot=false \
+
+    --set web.image.registry=nexus.dspace.kt.co.kr/ \
+
+    --set web.image.tag=2.4.3-debian-11-r5_v2 \
+
+    --set web.image.repository=bitnami/airflow \
+
+    --set git.dags.enabled=true \
+
+    --set git.dags.repositories[0].repository=https://82258624:Bz-rzP-3YZJFRzU4hNxk@gitlab.dspace.kt.co.kr/icis-tr/sa/airflow.git \
+
+    --set git.dags.repositories[0].name=git-repo \
+
+    --set git.dags.repositories[0].branch=master \
+
+    --set git.dags.repositories[0].path=/tests/dags \
+
+    --set postgresql.enabled=true \
+
+    --set postgresql.primary.persistence.enabled=True \
+
+    --set postgresql.auth.enablePostgresUser=true \
+
+    --set postgresql.auth.username=bn_airflow \
+
+    --set postgresql.auth.password=2wiRWAlYy7 \
+
+    --set redis.enabled=true \
+
+    --set redis.auth.enabled=true \
+
+    --set redis.auth.password=MAkPTHTe5u \
+
+    --set redis.master.persistence.enabled=True \
+
+    --set serviceAccount.create=True \
+
+    -n airflow-system
+
+
+or
+
+
+#helm upgrade airflow
+
+helm upgrade airflow . -f values.yaml -n airflow-system
+
+
+#helm uninstall keycloak
+
+helm -n airflow-system delete airflow
+
+
+#권한 문제가 생길시 !
+
+oc patch serviceaccount keycloak -p '{"imagePullSecrets": [{"name": "dspace-nexus"}]}' -n airflow-system
+
+
+oc adm policy add-scc-to-user anyuid -z  keycloak -n airflow-system  oc adm policy add-scc-to-user privileged -z  keycloak -n airflow-system  
+
+oc adm policy add-scc-to-user anyuid -z  postgresql -n airflow-system  oc adm policy add-scc-to-user privileged -z  postgresql -n airflow-system
