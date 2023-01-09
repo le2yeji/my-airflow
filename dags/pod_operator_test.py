@@ -17,7 +17,7 @@ task_default_args = {
     #'retry_delay': timedelta(minutes=5),
     #'start_date': datetime(2020, 11, 21),
     'schedule_interval': None,
-    'start_date': days_ago(2)
+    'start_date': days_ago(2),
     'depends_on_past': False,
     'email': ['shclub@gmail.com'],
     'email_on_retry': False,
