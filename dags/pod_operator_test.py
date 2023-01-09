@@ -9,7 +9,7 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
     KubernetesPodOperator,
 )
 
-dag_id = 'kubernetes-dag'
+#dag_id = 'kubernetes-dag'
 
 task_default_args = {
     'owner': 'airflow',
@@ -24,14 +24,25 @@ task_default_args = {
 }
 
 
-dag = DAG(
-    dag_id=dag_id,
-    description='kubernetes pod operator',
-    default_args=task_default_args,
-    schedule_interval='5 16 * * *',
-    max_active_runs=1
-)
+#dag = DAG(
+#    dag_id=dag_id,
+#    description='kubernetes pod operator',
+#    default_args=task_default_args,
+#    schedule_interval='5 16 * * *',
+#    max_active_runs=1
+#)
 
+args = {
+    'owner': 'airflow'
+}
+
+with DAG(
+    dag_id='kubernetes-simple-dag',
+    default_args=args,
+    schedule_interval=None,
+    start_date=days_ago(2)
+) as dag:
+    
 #env = Secret(
 #    'env',
 #    'TEST',
@@ -55,8 +66,8 @@ start = DummyOperator(task_id="start", dag=dag)
 run = KubernetesPodOperator(
     task_id="kubernetespodoperator",
     namespace='edu31',
-    image='busybox',
-    cmds=["sleep", "360d"],
+    image='nginx',
+    #cmds=["sleep", "360d"],
     #secrets=[
     #    env
     #],
