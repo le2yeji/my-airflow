@@ -55,9 +55,9 @@ run = KubernetesPodOperator(
     task_id="kubernetespodoperator",
     namespace='edu31',
     image='nginx',
-    secrets=[
-        env
-    ],
+    #secrets=[
+    #    env
+    #],
     #image_pull_secrets=[k8s.V1LocalObjectReference('image_credential')],
     name="job",
     is_delete_operator_pod=True,
