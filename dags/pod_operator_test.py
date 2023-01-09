@@ -12,7 +12,7 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
 dag_id = 'kubernetes-dag'
 
 task_default_args = {
-    'owner': 'admin',
+    'owner': 'airflow',
     'retries': 3,
     'retry_delay': timedelta(minutes=5),
     'start_date': datetime(2020, 11, 21),
