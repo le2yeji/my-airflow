@@ -51,12 +51,6 @@ dag = DAG(
 #    'TEST',
 #)
 
-#pod_resources = Resources()
-#pod_resources.request_cpu = '1000m'
-#pod_resources.request_memory = '2048Mi'
-#pod_resources.limit_cpu = '2000m'
-#pod_resources.limit_memory = '4096Mi'
-
 # Use k8s_client.V1ResourceRequirements to define resource limits
 k8s_resource_requirements = k8s.V1ResourceRequirements(
     requests={"cpu": "0.2","memory": "100Mi"}, limits={"cpu": "0.5","memory": "512Mi"}
@@ -67,7 +61,6 @@ k8s_resource_requirements = k8s.V1ResourceRequirements(
 #]
 
 start = DummyOperator(task_id="start", dag=dag)
-
 
 run = KubernetesPodOperator(
     task_id="kubernetespodoperator",
