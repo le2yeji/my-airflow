@@ -17,9 +17,9 @@ task_default_args = {
     #'retry_delay': timedelta(minutes=5),
     'start_date': datetime(2023, 1, 1),
     'depends_on_past': False,
-    'email': ['shclub@gmail.com'],
-    'email_on_retry': False,
-    'email_on_failure': True,
+  #  'email': ['shclub@gmail.com'],
+  #  'email_on_retry': False,
+  #  'email_on_failure': True,
     'execution_timeout': timedelta(hours=1)
 }
 
