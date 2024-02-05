@@ -39,12 +39,11 @@ run = KubernetesPodOperator(
     namespace='default',
     in_cluster=True,
     image='nginx',
-    cluster_context='cluster_context',
     #image='ghcr.io/rohminji/batch:master',
     name="db-job",
     is_delete_operator_pod=True,
     get_logs=True,
-    service_account_name='edu',
+    #service_account_name='edu',
     # resources = k8s_resource_requirements,
     dag=dag,
 )
