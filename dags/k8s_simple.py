@@ -34,6 +34,7 @@ with DAG(
         cmds=["python", "-c"],
         arguments=[
             'print("Hello, World!")',
+            'import sys',
             'sys.exit(0)'  # 스크립트 종료
         ],  # 여기에 파이썬 스크립트를 입력하거나 실행할 파이썬 파일의 경로를 제공하세요.
         get_logs=True,
