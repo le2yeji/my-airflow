@@ -33,7 +33,8 @@ with DAG(
         is_delete_operator_pod=False,
         cmds=["python", "-c"],
         arguments=[
-            'print("Hello, World!")'
+            'print("Hello, World!")',
+            'sys.exit(0)'  # 스크립트 종료
         ],  # 여기에 파이썬 스크립트를 입력하거나 실행할 파이썬 파일의 경로를 제공하세요.
         get_logs=True,
         container_resources=resources,
